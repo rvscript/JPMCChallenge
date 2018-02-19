@@ -1,16 +1,18 @@
 package com.example.rv193.jpmc.ui.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.example.rv193.jpmc.R;
+
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
@@ -29,7 +31,7 @@ public abstract class BaseActivity <T extends BaseContract.Presenter> extends Ap
 
     @Override
     protected void onDestroy() {
-        mPresenter.onViewDetached();
+//        mPresenter.onViewDetached();
         super.onDestroy();
     }
 
@@ -41,6 +43,31 @@ public abstract class BaseActivity <T extends BaseContract.Presenter> extends Ap
     @Override
     public void showMessage(@NonNull int message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @VisibleForTesting
+    public ProgressDialog mProgressDialog;
+
+    public void showProgressDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage(getString(R.string.loading));
+            mProgressDialog.setIndeterminate(true);
+        }
+
+        mProgressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        hideProgressDialog();
     }
 
     @Override

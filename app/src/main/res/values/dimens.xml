@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_text_size">24sp</dimen>
+    <dimen name="title_margin_top">40dp</dimen>
+    <dimen name="footer_negative_margin">-20dp</dimen>
+    <dimen name="checbox_margin_bottom">10dp</dimen>
+</resources>

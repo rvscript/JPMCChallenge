@@ -51,6 +51,7 @@ android {
 
 dependencies {
     implementation 'com.android.support:design:26.1.0'
+    implementation 'com.google.firebase:firebase-auth:11.0.4'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -89,7 +90,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.jakewharton.timber:timber:4.3.1'
 
-
     // Dagger
     implementation "com.google.dagger:dagger-android:$versions.dagger"
     implementation "com.google.dagger:dagger-android-support:$versions.dagger"
@@ -102,3 +102,5 @@ dependencies {
 
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
 }
+
+apply plugin: 'com.google.gms.google-services'
